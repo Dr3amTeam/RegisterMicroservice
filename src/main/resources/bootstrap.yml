@@ -3,6 +3,17 @@ spring:
     name: register-service
   cloud:
     config:
-      uri: http://localhost:8070
+      uri: http://localhost:8888
       username: root
       password: s3cr3t
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/AppDHome
+    username: postgres
+    password: chelseafc11
+    driver-class-name: org.postgresql.Driver
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
