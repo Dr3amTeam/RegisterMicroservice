@@ -19,9 +19,10 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.dhome</groupId>
-            <artifactId>register-microservice</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,6 +69,11 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-spring-boot-starter</artifactId>
+            <version>4.5.3</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
