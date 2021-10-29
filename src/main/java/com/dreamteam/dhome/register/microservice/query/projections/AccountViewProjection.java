@@ -1,6 +1,7 @@
 package com.dreamteam.dhome.register.microservice.query.projections;
 
 import com.dhome.registermicroservice.contracts.events.AccountRegistered;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.Timestamp;
 import org.springframework.stereotype.Component;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.time.Instant;
 
 @Component
+@ProcessingGroup("customer")
 public class AccountViewProjection {
     private final AccountViewRepository accountViewRepository;
 
