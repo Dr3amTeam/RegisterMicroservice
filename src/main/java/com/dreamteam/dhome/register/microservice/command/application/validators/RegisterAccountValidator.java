@@ -43,7 +43,7 @@ public class RegisterAccountValidator {
         if (notification.hasErrors()){
             return notification;
         }
-        Optional<Customer> customerOptional = customerRepository.findById(DNI);
+        Optional<Customer> customerOptional = customerRepository.getByUsername(username);
         if (customerOptional.isPresent()){
             notification.addError("Account dni is taken");
         }

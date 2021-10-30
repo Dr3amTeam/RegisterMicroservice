@@ -11,7 +11,7 @@ public class RegisterAccountRequest {
     private String lastname;
     private String age;
     private Long phone;
-    private String DNI;
+    private String dni;
     private String email;
     private String address;
 }
