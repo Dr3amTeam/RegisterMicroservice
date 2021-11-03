@@ -36,7 +36,7 @@ public class RegisterAccountValidator {
         if (email.isEmpty()){
             notification.addError("Account email is required");
         }
-        String DNI = registerAccountRequest.getDNI();
+        String DNI = registerAccountRequest.getDni();
         if (DNI.isEmpty()){
             notification.addError("Account dni is required");
         }

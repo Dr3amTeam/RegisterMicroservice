@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/accounts")
 @Api(tags = "Accounts")
 public class AccountComandController {
     private final AccountApplicationService accountApplicationService;

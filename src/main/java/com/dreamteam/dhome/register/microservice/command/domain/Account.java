@@ -6,10 +6,7 @@ import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
-
-
 import java.time.Instant;
-
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
 @Aggregate
@@ -24,14 +21,14 @@ public class Account {
     }
 
     @CommandHandler
-    public Account(RegisterAccount registerAccount){
+    public Account(RegisterAccount command){
         Instant now = Instant.now();
         apply(
            new AccountRegistered(
-                   registerAccount.getAccountId(),
-                   registerAccount.getUsername(),
-                   registerAccount.getPassword(),
-                   registerAccount.isVerify(),
+                   command.getAccountId(),
+                   command.getUsername(),
+                   command.getPassword(),
+                   command.isVerify(),
                    now
            )
         );

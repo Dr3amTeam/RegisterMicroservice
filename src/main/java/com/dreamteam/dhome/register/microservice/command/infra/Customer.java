@@ -10,13 +10,14 @@ import javax.persistence.Id;
 @Setter
 @Entity
 public class Customer {
+
     @Id
+    private String dni;
     private String accountId;
     private String name;
     private String lastname;
     private String age;
     private Long phone;
-    private String dni;
     private String email;
     private String password;
     private String username;
