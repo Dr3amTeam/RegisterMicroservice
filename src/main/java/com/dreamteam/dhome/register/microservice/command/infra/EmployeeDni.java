@@ -1,41 +1,47 @@
 package com.dreamteam.dhome.register.microservice.command.infra;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
 @Entity
-public class Customer {
-
+public class EmployeeDni {
     @Id
-    private String dni;
     private String accountId;
+    @NotNull
     private String name;
+    @NotNull
     private String lastname;
+    @NotNull
     private String age;
-    private Long phone;
+    @NotNull
+    private String phone;
+    @NotNull
+    private String dni;
+    @NotNull
     private String email;
+    @NotNull
     private String password;
+    @NotNull
     private String username;
+    @NotNull
     private String address;
+    private boolean verify;
 
-    public Customer() {
+    public EmployeeDni() {
     }
 
-    public Customer(String accountId, String name, String lastname, String age, Long phone, String DNI, String email, String password, String username, String address) {
+    public EmployeeDni(String accountId, String name, String lastname, String age, String phone, String dni, String email, String password, String username, String address, boolean verify) {
         this.accountId = accountId;
         this.name = name;
         this.lastname = lastname;
         this.age = age;
         this.phone = phone;
-        this.dni = DNI;
+        this.dni = dni;
         this.email = email;
         this.password = password;
         this.username = username;
         this.address = address;
+        this.verify = verify;
     }
 }

@@ -3,15 +3,15 @@ package com.dreamteam.dhome.register.microservice.command.application.dtos.reque
 import lombok.Value;
 
 @Value
-public class RegisterAccountRequest {
-    private String username;
-    private String password;
-    private boolean verify;
+public class RegisterCustomerRequest {
     private String name;
     private String lastname;
     private String age;
-    private Long phone;
+    private String phone;
     private String dni;
     private String email;
+    private String password;
+    private String username;
     private String address;
+    private boolean verify;
 }
