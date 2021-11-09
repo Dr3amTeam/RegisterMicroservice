@@ -27,9 +27,9 @@ public class AccountApplicationService {
         this.customerRepository = customerRepository;
     }
 
-    public Result<RegisterAccountResponse, Notification> register(RegisterAccountRequest registerAccountRequest) throws Exception{
+    public Result<RegisterAccountResponse, Notification> register(RegisterAccountRequest registerAccountRequest) throws Exception {
         Notification notification = this.registerAccountValidator.validate(registerAccountRequest);
-        if (notification.hasErrors()){
+        if (notification.hasErrors()) {
             return Result.failure(notification);
         }
         String accountId = UUID.randomUUID().toString();
@@ -40,9 +40,9 @@ public class AccountApplicationService {
                 registerAccountRequest.isVerify()
         );
         CompletableFuture<Object> future = commandGateway.send(registerAccount);
-        CompletableFuture<ResultType> futureResult = future.handle((ok,ex)->(ex!=null)?ResultType.FAILURE:ResultType.SUCCESS);
+        CompletableFuture<ResultType> futureResult = future.handle((ok, ex) -> (ex != null) ? ResultType.FAILURE : ResultType.SUCCESS);
         ResultType resultType = futureResult.get();
-        if (resultType == ResultType.FAILURE){
+        if (resultType == ResultType.FAILURE) {
             throw new Exception();
         }
         RegisterAccountResponse registerAccountResponse = new RegisterAccountResponse(

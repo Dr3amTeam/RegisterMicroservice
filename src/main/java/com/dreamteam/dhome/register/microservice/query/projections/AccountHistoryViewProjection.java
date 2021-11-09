@@ -16,8 +16,8 @@ public class AccountHistoryViewProjection {
     }
 
     @EventHandler
-    public void on(AccountRegistered event, @Timestamp Instant timestamp){
-        AccountHistoryView accountHistoryView = new AccountHistoryView(event.getAccountId(),event.getUsername(),event.getPassword(),event.isVerify(),event.getOccurredOn());
+    public void on(AccountRegistered event, @Timestamp Instant timestamp) {
+        AccountHistoryView accountHistoryView = new AccountHistoryView(event.getAccountId(), event.getUsername(), event.getPassword(), event.isVerify(), event.getOccurredOn());
         accountHistoryViewRepository.save(accountHistoryView);
     }
 }

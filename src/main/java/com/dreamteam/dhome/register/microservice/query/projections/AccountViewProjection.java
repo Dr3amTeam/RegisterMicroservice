@@ -16,8 +16,8 @@ public class AccountViewProjection {
     }
 
     @EventHandler
-    public void on(AccountRegistered event, @Timestamp Instant timestamp){
-        AccountView accountView = new AccountView(event.getAccountId(),event.getUsername(),event.getPassword(),event.isVerify(),event.getOccurredOn());
+    public void on(AccountRegistered event, @Timestamp Instant timestamp) {
+        AccountView accountView = new AccountView(event.getAccountId(), event.getUsername(), event.getPassword(), event.isVerify(), event.getOccurredOn());
         accountViewRepository.save(accountView);
     }
 

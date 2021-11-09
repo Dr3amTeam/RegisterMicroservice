@@ -11,19 +11,30 @@ import java.time.Instant;
 
 @Entity
 public class AccountHistoryView {
-    @Id @GeneratedValue @Getter @Setter
+    @Id
+    @GeneratedValue
+    @Getter
+    @Setter
     private Long accountHistoryId;
-    @Column(length = 36) @Getter
+    @Column(length = 36)
+    @Getter
     @Setter
     private String accountId;
-    @Column(length = 50) @Getter @Setter
+    @Column(length = 50)
+    @Getter
+    @Setter
     private String username;
-    @Column(length = 10) @Getter @Setter
+    @Column(length = 10)
+    @Getter
+    @Setter
     private String password;
-    @Getter @Setter
+    @Getter
+    @Setter
     private boolean verify;
     private Instant createdAt;
-    @Column(nullable = true) @Getter @Setter
+    @Column(nullable = true)
+    @Getter
+    @Setter
     private Instant updatedAt;
 
     public AccountHistoryView(String accountId, String username, String password, boolean verify, Instant occurredOn) {

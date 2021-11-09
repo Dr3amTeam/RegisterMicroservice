@@ -24,24 +24,24 @@ public class Account {
     }
 
     @CommandHandler
-    public Account(RegisterAccount registerAccount){
+    public Account(RegisterAccount registerAccount) {
         Instant now = Instant.now();
         apply(
-           new AccountRegistered(
-                   registerAccount.getAccountId(),
-                   registerAccount.getUsername(),
-                   registerAccount.getPassword(),
-                   registerAccount.isVerify(),
-                   now
-           )
+                new AccountRegistered(
+                        registerAccount.getAccountId(),
+                        registerAccount.getUsername(),
+                        registerAccount.getPassword(),
+                        registerAccount.isVerify(),
+                        now
+                )
         );
     }
 
     @EventSourcingHandler
-    protected void on(AccountRegistered event){
-        this.accountId=event.getAccountId();
-        this.username=event.getUsername();
-        this.password=event.getPassword();
-        this.verify=event.isVerify();
+    protected void on(AccountRegistered event) {
+        this.accountId = event.getAccountId();
+        this.username = event.getUsername();
+        this.password = event.getPassword();
+        this.verify = event.isVerify();
     }
 }

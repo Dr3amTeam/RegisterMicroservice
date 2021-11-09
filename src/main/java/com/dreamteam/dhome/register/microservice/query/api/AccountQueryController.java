@@ -32,7 +32,7 @@ public class AccountQueryController {
     public ResponseEntity<List<AccountView>> getAll() {
         try {
             return new ResponseEntity<List<AccountView>>(accountViewRepository.findAll(), HttpStatus.OK);
-        } catch( Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -43,7 +43,7 @@ public class AccountQueryController {
         try {
             List<AccountHistoryView> customers = accountHistoryViewRepository.getHistoryByAccountId(id);
             return new ResponseEntity<List<AccountHistoryView>>(customers, HttpStatus.OK);
-        } catch( Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

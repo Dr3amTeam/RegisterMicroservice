@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AccountViewRepository extends JpaRepository<AccountView,String> {
+public interface AccountViewRepository extends JpaRepository<AccountView, String> {
     Optional<AccountView> getByUsername(String username);
 }

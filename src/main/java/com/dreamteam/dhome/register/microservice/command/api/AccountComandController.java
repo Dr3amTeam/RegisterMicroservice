@@ -30,7 +30,8 @@ public class AccountComandController {
         this.commandGateway = commandGateway;
         this.customerRepository = customerRepository;
     }
-    @PostMapping(path= "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @PostMapping(path = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> register(@RequestBody RegisterAccountRequest registerAccountRequest) {
         try {
             Result<RegisterAccountResponse, Notification> result = accountApplicationService.register(registerAccountRequest);
@@ -38,7 +39,7 @@ public class AccountComandController {
                 return ApiController.created(result.getSuccess());
             }
             return ApiController.error(result.getFailure().getErrors());
-        } catch(Exception e) {
+        } catch (Exception e) {
             return ApiController.serverError();
         }
     }

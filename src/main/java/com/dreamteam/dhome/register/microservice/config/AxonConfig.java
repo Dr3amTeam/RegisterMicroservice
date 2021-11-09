@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AxonConfig {
     @Bean
-    public Repository<Account> eventSourcingRepository(EventStore eventStore){
+    public Repository<Account> eventSourcingRepository(EventStore eventStore) {
         return EventSourcingRepository.builder(Account.class)
                 .eventStore(eventStore)
                 .build();
