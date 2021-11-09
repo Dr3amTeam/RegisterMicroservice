@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.6</version>
+        <version>2.5.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.dreamteam</groupId>
@@ -15,46 +15,44 @@
     <description>RegisterMicroservice</description>
     <properties>
         <java.version>11</java.version>
+        <axon.version>4.5.3</axon.version>
         <spring-cloud.version>2020.0.4</spring-cloud.version>
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.200</version>
-            <scope>compile</scope>
+            <groupId>com.dhome</groupId>
+            <artifactId>register-microservice</artifactId>
+            <version>0.0.3-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-web</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!--
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
+        -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -67,21 +65,35 @@
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
             <version>3.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
-            <version>4.5.3</version>
+            <version>${axon.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>31.0.1-jre</version>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
         </dependency>
     </dependencies>
+    <!--
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -91,9 +103,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>31.0.1-jre</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
+    -->
     <build>
         <plugins>
             <plugin>
@@ -110,5 +127,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

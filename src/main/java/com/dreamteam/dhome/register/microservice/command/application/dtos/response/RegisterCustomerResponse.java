@@ -3,9 +3,7 @@ package com.dreamteam.dhome.register.microservice.command.application.dtos.respo
 import lombok.Value;
 
 @Value
-public class RegisterAccountResponse {
-    private String accountId;
+public class RegisterCustomerResponse {
+    private String email;
     private String username;
-    private String password;
-    private boolean verify;
 }
