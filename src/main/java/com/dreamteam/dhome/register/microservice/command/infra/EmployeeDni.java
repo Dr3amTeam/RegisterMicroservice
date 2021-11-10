@@ -31,6 +31,7 @@ public class EmployeeDni {
     public EmployeeDni() {
     }
 
+
     public EmployeeDni(String accountId, String name, String lastname, String age, String phone, String dni, String email, String password, String username, String address, boolean verify) {
         this.accountId = accountId;
         this.name = name;
@@ -43,5 +44,21 @@ public class EmployeeDni {
         this.username = username;
         this.address = address;
         this.verify = verify;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getCustomerId() {
+        return accountId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.accountId = customerId;
     }
 }

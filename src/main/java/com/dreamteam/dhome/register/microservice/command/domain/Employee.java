@@ -1,6 +1,8 @@
 package com.dreamteam.dhome.register.microservice.command.domain;
 
+import com.dhome.registermicroservice.contracts.commands.EditEmployee;
 import com.dhome.registermicroservice.contracts.commands.RegisterEmployee;
+import com.dhome.registermicroservice.contracts.events.EmployeeEdited;
 import com.dhome.registermicroservice.contracts.events.EmployeeRegistered;
 import com.dhome.registermicroservice.contracts.others.Office;
 import org.axonframework.commandhandling.CommandHandler;
@@ -29,6 +31,8 @@ public class Employee {
     private boolean verify;
     @Embedded
     private Office office;
+
+
     public Employee() {
     }
 
@@ -68,5 +72,39 @@ public class Employee {
         this.address=event.getAddress();
         this.verify=event.isVerify();
         this.office=event.getOffice();
+    }
+
+    @CommandHandler
+    public void handle(EditEmployee command) {
+        Instant now = Instant.now();
+        apply(
+                new EmployeeEdited(
+                        command.getAccountId(),
+                        command.getName(),
+                        command.getLastname(),
+                        command.getAge(),
+                        command.getPhone(),
+                        command.getDni(),
+                        command.getEmail(),
+                        command.getPassword(),
+                        command.getUsername(),
+                        command.getAddress(),
+                        command.isVerify(),
+                        now
+                )
+        );
+    }
+
+    @EventSourcingHandler
+    protected void on(EmployeeEdited event) {
+        name = event.getName();
+        lastname = event.getLastname();
+        age = event.getAge();
+        phone = event.getPhone();
+        dni = event.getDni();
+        email = event.getEmail();
+        password = event.getPassword();
+        username = event.getUsername();
+        verify = event.isVerify();
     }
 }

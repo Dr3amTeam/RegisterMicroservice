@@ -39,14 +39,14 @@ public class RegisterEmployeeValidator {
         if (email.isEmpty()){
             notification.addError("Employee email is required");
         }
-        String DNI = registerEmployeeRequest.getDni();
-        if (DNI.isEmpty()){
+        String dni = registerEmployeeRequest.getDni();
+        if (dni.isEmpty()){
             notification.addError("Employee dni is required");
         }
         if (notification.hasErrors()){
             return notification;
         }
-        Optional<EmployeeDni> customerOptional = employeeDniRepository.findByDni(DNI);
+        Optional<EmployeeDni> customerOptional = employeeDniRepository.findById(dni);
         if (customerOptional.isPresent()){
             notification.addError("Employee dni is taken");
         }
