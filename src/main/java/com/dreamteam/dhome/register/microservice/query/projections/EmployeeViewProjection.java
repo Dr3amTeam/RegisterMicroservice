@@ -43,7 +43,7 @@ public class EmployeeViewProjection {
         Optional<EmployeeView> optionalEmployeeView = employeeViewRepository.findById(event.getEmployeeId());
         if (optionalEmployeeView.isPresent()){
             EmployeeView employeeView = optionalEmployeeView.get();
-            employeeView.setBalance(employeeView.getBalance().subtract(event.getAmount()));
+            employeeView.setBalance(employeeView.getBalance().add(event.getAmount()));
             employeeViewRepository.save(employeeView);
         }
     }
@@ -52,7 +52,7 @@ public class EmployeeViewProjection {
         Optional<EmployeeView> optionalEmployeeView = employeeViewRepository.findById(event.getEmployeeId());
         if (optionalEmployeeView.isPresent()){
             EmployeeView employeeView = optionalEmployeeView.get();
-            employeeView.setBalance(employeeView.getBalance().subtract(event.getAmount()));
+            employeeView.setBalance(employeeView.getBalance().add(event.getAmount()));
             employeeViewRepository.save(employeeView);
         }
     }

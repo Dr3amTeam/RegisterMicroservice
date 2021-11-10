@@ -1,11 +1,15 @@
 package com.dreamteam.dhome.register.microservice.command.domain;
 
+import com.dhome.registermicroservice.contracts.commands.AccountToEmployee;
 import com.dhome.registermicroservice.contracts.commands.RegisterEmployee;
 import com.dhome.registermicroservice.contracts.events.EmployeeRegistered;
+import com.dhome.registermicroservice.contracts.events.ToAccountNotFound;
+import com.dhome.registermicroservice.contracts.events.ToEmployeeAccount;
 import com.dhome.registermicroservice.contracts.others.Office;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import javax.persistence.Embedded;
@@ -57,6 +61,19 @@ public class Employee {
         );
     }
 
+    @CommandHandler
+    public void accountToEmployee(AccountToEmployee accountToEmployee) throws Exception{
+        Instant now = Instant.now();
+        try{
+            apply(new ToEmployeeAccount(accountToEmployee.getEmployeeId(),accountToEmployee.getPaymentId(),accountToEmployee.getAmount(),now));
+        }catch (AggregateNotFoundException ex){
+            apply(new ToAccountNotFound(accountToEmployee.getEmployeeId(),accountToEmployee.getPaymentId(),now));
+            throw ex;
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
     @EventSourcingHandler
     protected void on(EmployeeRegistered event){
         this.accountId=event.getAccountId();
@@ -72,5 +89,10 @@ public class Employee {
         this.verify=event.isVerify();
         this.office=event.getOffice();
         this.balance=event.getBalance();
+    }
+
+    @EventSourcingHandler
+    public void on(ToEmployeeAccount event){
+        balance = balance.add(event.getAmount());
     }
 }

@@ -41,19 +41,19 @@ public class EmployeeHistoryViewProjection {
 
     @EventHandler
     public void on(EmployeeAccount event){
-        Optional<EmployeeHistoryView> optionalEmployeeHistoryView = employeeViewRepository.findById(event.getEmployeeId());
+        Optional<EmployeeHistoryView> optionalEmployeeHistoryView = employeeViewRepository.getEmployeeHistoryViewByAccountId(event.getEmployeeId());
         if (optionalEmployeeHistoryView.isPresent()){
             EmployeeHistoryView employeeView = optionalEmployeeHistoryView.get();
-            employeeView.setBalance(employeeView.getBalance().subtract(event.getAmount()));
+            employeeView.setBalance(employeeView.getBalance().add(event.getAmount()));
             employeeViewRepository.save(employeeView);
         }
     }
     @EventHandler
     public void on(ToEmployeeAccount event){
-        Optional<EmployeeHistoryView> optionalEmployeeHistoryView = employeeViewRepository.findById(event.getEmployeeId());
+        Optional<EmployeeHistoryView> optionalEmployeeHistoryView = employeeViewRepository.getEmployeeHistoryViewByAccountId(event.getEmployeeId());
         if (optionalEmployeeHistoryView.isPresent()){
             EmployeeHistoryView employeeView = optionalEmployeeHistoryView.get();
-            employeeView.setBalance(employeeView.getBalance().subtract(event.getAmount()));
+            employeeView.setBalance(employeeView.getBalance().add(event.getAmount()));
             employeeViewRepository.save(employeeView);
         }
     }

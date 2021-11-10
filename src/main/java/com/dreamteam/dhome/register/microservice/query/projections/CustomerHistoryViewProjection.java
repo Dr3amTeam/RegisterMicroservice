@@ -41,7 +41,7 @@ public class CustomerHistoryViewProjection {
 
     @EventHandler
     public void on(CustomerAccount event){
-        Optional<CustomerHistoryView> optionalCustomerHistoryView = accountHistoryViewRepository.findById(event.getCustomerId());
+        Optional<CustomerHistoryView> optionalCustomerHistoryView = accountHistoryViewRepository.getCustomerHistoryViewByAccountId(event.getCustomerId());
         if (optionalCustomerHistoryView.isPresent()){
             CustomerHistoryView customerHistoryView = optionalCustomerHistoryView.get();
             customerHistoryView.setBalance(customerHistoryView.getBalance().subtract(event.getAmount()));
@@ -50,7 +50,7 @@ public class CustomerHistoryViewProjection {
     }
     @EventHandler
     public void on(FromCustomerAccount event){
-        Optional<CustomerHistoryView> optionalCustomerHistoryView = accountHistoryViewRepository.findById(event.getCustomerId());
+        Optional<CustomerHistoryView> optionalCustomerHistoryView = accountHistoryViewRepository.getCustomerHistoryViewByAccountId(event.getCustomerId());
         if (optionalCustomerHistoryView.isPresent()){
             CustomerHistoryView customerHistoryView = optionalCustomerHistoryView.get();
             customerHistoryView.setBalance(customerHistoryView.getBalance().subtract(event.getAmount()));

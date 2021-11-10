@@ -1,10 +1,14 @@
 package com.dreamteam.dhome.register.microservice.command.domain;
 
+import com.dhome.registermicroservice.contracts.commands.AccountFromCustomer;
 import com.dhome.registermicroservice.contracts.commands.RegisterCustomer;
 import com.dhome.registermicroservice.contracts.events.CustomerRegistered;
+import com.dhome.registermicroservice.contracts.events.FromAccountNotFound;
+import com.dhome.registermicroservice.contracts.events.FromCustomerAccount;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -52,6 +56,19 @@ public class Customer{
         );
     }
 
+    @CommandHandler
+    public void accountFromCustomer(AccountFromCustomer accountFromCustomer) throws Exception{
+        Instant now = Instant.now();
+        try{
+            apply(new FromCustomerAccount(accountId,accountFromCustomer.getPaymentId(),accountFromCustomer.getAmount(),now));
+        }catch (AggregateNotFoundException ex){
+            apply(new FromAccountNotFound(accountFromCustomer.getCustomerId(),accountFromCustomer.getPaymentId(),now));
+            throw ex;
+        } catch (Exception ex){
+            throw ex;
+        }
+    }
+
     @EventSourcingHandler
     protected void on(CustomerRegistered event){
         this.accountId=event.getAccountId();
@@ -66,5 +83,10 @@ public class Customer{
         this.address=event.getAddress();
         this.verify=event.isVerify();
         this.balance=event.getBalance();
+    }
+
+    @EventSourcingHandler
+    public void on(FromCustomerAccount event){
+        balance = balance.subtract(event.getAmount());
     }
 }
