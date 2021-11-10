@@ -46,4 +46,20 @@ public class EmployeeDni {
         this.verify = verify;
         this.balance = balance;
     }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getCustomerId() {
+        return accountId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.accountId = customerId;
+    }
 }
