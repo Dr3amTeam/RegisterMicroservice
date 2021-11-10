@@ -3,6 +3,7 @@ package com.dreamteam.dhome.register.microservice.command.infra;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Entity
 public class EmployeeDni {
@@ -27,11 +28,11 @@ public class EmployeeDni {
     @NotNull
     private String address;
     private boolean verify;
-
+    private BigDecimal balance;
     public EmployeeDni() {
     }
 
-    public EmployeeDni(String accountId, String name, String lastname, String age, String phone, String dni, String email, String password, String username, String address, boolean verify) {
+    public EmployeeDni(String accountId, String name, String lastname, String age, String phone, String dni, String email, String password, String username, String address, boolean verify, BigDecimal balance) {
         this.accountId = accountId;
         this.name = name;
         this.lastname = lastname;
@@ -43,5 +44,6 @@ public class EmployeeDni {
         this.username = username;
         this.address = address;
         this.verify = verify;
+        this.balance = balance;
     }
 }

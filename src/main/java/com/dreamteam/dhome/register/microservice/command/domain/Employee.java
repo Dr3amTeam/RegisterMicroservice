@@ -9,6 +9,7 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import javax.persistence.Embedded;
+import java.math.BigDecimal;
 import java.time.Instant;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
@@ -27,6 +28,7 @@ public class Employee {
     private String username;
     private String address;
     private boolean verify;
+    private BigDecimal balance;
     @Embedded
     private Office office;
     public Employee() {
@@ -48,6 +50,7 @@ public class Employee {
                         command.getUsername(),
                         command.getAddress(),
                         command.isVerify(),
+                        command.getBalance(),
                         now,
                         command.getOffice()
                 )
@@ -68,5 +71,6 @@ public class Employee {
         this.address=event.getAddress();
         this.verify=event.isVerify();
         this.office=event.getOffice();
+        this.balance=event.getBalance();
     }
 }

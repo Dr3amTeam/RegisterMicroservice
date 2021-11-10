@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
@@ -35,6 +36,8 @@ public class EmployeeHistoryView {
     private String address;
     @Getter @Setter
     private boolean verify;
+    @Getter @Setter
+    private BigDecimal balance;
     private Instant createdAt;
     @Column(nullable = true) @Getter @Setter
     private Instant updatedAt;
@@ -43,7 +46,7 @@ public class EmployeeHistoryView {
     public EmployeeHistoryView() {
     }
 
-    public EmployeeHistoryView(String accountId, String name, String lastname, String age, String phone, String dni, String email, String password, String username, String address, boolean verify, Instant createdAt, Instant updatedAt, String office, String speciality) {
+    public EmployeeHistoryView(String accountId, String name, String lastname, String age, String phone, String dni, String email, String password, String username, String address, boolean verify, BigDecimal balance, Instant createdAt, Instant updatedAt, String office, String speciality) {
         this.accountId = accountId;
         this.name = name;
         this.lastname = lastname;
@@ -55,6 +58,7 @@ public class EmployeeHistoryView {
         this.username = username;
         this.address = address;
         this.verify = verify;
+        this.balance = balance;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         Office = office;
@@ -73,6 +77,7 @@ public class EmployeeHistoryView {
         this.username = employeeHistoryView.username;
         this.address = employeeHistoryView.address;
         this.verify = employeeHistoryView.verify;
+        this.balance = employeeHistoryView.balance;
         this.createdAt = employeeHistoryView.createdAt;
         this.updatedAt = employeeHistoryView.updatedAt;
         this.Office=employeeHistoryView.Office;

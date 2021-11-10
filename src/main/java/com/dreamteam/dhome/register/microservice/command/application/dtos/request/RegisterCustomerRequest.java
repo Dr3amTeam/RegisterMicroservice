@@ -2,6 +2,8 @@ package com.dreamteam.dhome.register.microservice.command.application.dtos.reque
 
 import lombok.Value;
 
+import java.math.BigDecimal;
+
 @Value
 public class RegisterCustomerRequest {
     private String name;
@@ -14,4 +16,5 @@ public class RegisterCustomerRequest {
     private String username;
     private String address;
     private boolean verify;
+    private BigDecimal balance;
 }

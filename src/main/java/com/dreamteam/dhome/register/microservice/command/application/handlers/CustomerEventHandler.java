@@ -31,6 +31,6 @@ public class CustomerEventHandler {
                                                     event.getPassword(),
                                                     event.getUsername(),
                                                     event.getAddress(),
-                                                    event.isVerify()));
+                                                    event.isVerify(), event.getBalance()));
     }
 }

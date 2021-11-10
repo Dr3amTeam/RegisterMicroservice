@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
@@ -32,6 +33,8 @@ public class EmployeeView {
     private String address;
     @Getter @Setter
     private boolean verify;
+    @Getter @Setter
+    private BigDecimal balance;
     private Instant createdAt;
     @Column(nullable = true) @Getter @Setter
     private Instant updatedAt;
@@ -42,7 +45,7 @@ public class EmployeeView {
     public EmployeeView() {
     }
 
-    public EmployeeView(String accountId, String name, String lastname, String age, String phone, String dni, String email, String password, String username, String address, boolean verify, Instant createdAt, Instant updatedAt, String office, String speciality) {
+    public EmployeeView(String accountId, String name, String lastname, String age, String phone, String dni, String email, String password, String username, String address, boolean verify, BigDecimal balance, Instant createdAt, Instant updatedAt, String office, String speciality) {
         this.accountId = accountId;
         this.name = name;
         this.lastname = lastname;
@@ -54,6 +57,7 @@ public class EmployeeView {
         this.username = username;
         this.address = address;
         this.verify = verify;
+        this.balance = balance;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         Office = office;

@@ -3,6 +3,8 @@ package com.dreamteam.dhome.register.microservice.command.application.dtos.reque
 import com.dhome.registermicroservice.contracts.others.Office;
 import lombok.Value;
 
+import java.math.BigDecimal;
+
 @Value
 public class RegisterEmployeeRequest {
     private String name;
@@ -15,5 +17,7 @@ public class RegisterEmployeeRequest {
     private String username;
     private String address;
     private boolean verify;
+    private BigDecimal balance;
     private Office office;
+
 }

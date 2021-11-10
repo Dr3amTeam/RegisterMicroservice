@@ -8,6 +8,7 @@ import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
 
 import javax.persistence.PrimaryKeyJoinColumn;
+import java.math.BigDecimal;
 import java.time.Instant;
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
@@ -25,6 +26,7 @@ public class Customer{
     private String username;
     private String address;
     private boolean verify;
+    private BigDecimal balance;
     public Customer() {
     }
 
@@ -44,6 +46,7 @@ public class Customer{
                    command.getUsername(),
                    command.getAddress(),
                    command.isVerify(),
+                   command.getBalance(),
                    now
            )
         );
@@ -62,5 +65,6 @@ public class Customer{
         this.password=event.getPassword();
         this.address=event.getAddress();
         this.verify=event.isVerify();
+        this.balance=event.getBalance();
     }
 }

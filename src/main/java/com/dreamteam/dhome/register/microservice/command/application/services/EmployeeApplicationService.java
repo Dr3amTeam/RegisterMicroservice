@@ -45,6 +45,7 @@ public class EmployeeApplicationService {
                 registerEmployeeRequest.getUsername(),
                 registerEmployeeRequest.getAddress(),
                 registerEmployeeRequest.isVerify(),
+                registerEmployeeRequest.getBalance(),
                 registerEmployeeRequest.getOffice()
         );
         CompletableFuture<Object> future = commandGateway.send(registerEmployee);

@@ -30,6 +30,6 @@ public class EmployeeEventHandler {
                 event.getPassword(),
                 event.getUsername(),
                 event.getAddress(),
-                event.isVerify()));
+                event.isVerify(), event.getBalance()));
     }
 }

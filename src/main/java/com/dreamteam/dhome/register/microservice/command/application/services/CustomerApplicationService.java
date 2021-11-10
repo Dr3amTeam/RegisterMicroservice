@@ -44,7 +44,8 @@ public class CustomerApplicationService {
                 registerAccountRequest.getPassword(),
                 registerAccountRequest.getUsername(),
                 registerAccountRequest.getAddress(),
-                registerAccountRequest.isVerify()
+                registerAccountRequest.isVerify(),
+                registerAccountRequest.getBalance()
         );
         CompletableFuture<Object> future = commandGateway.send(registerCustomer);
         CompletableFuture<ResultType> futureResult = future.handle((ok,ex)->(ex!=null)?ResultType.FAILURE:ResultType.SUCCESS);
