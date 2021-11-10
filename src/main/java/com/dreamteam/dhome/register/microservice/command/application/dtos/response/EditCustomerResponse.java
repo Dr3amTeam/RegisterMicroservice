@@ -1,6 +1,9 @@
 package com.dreamteam.dhome.register.microservice.command.application.dtos.response;
 
+import lombok.Getter;
 import lombok.Value;
+
+import java.math.BigDecimal;
 
 @Value
 public class EditCustomerResponse {
@@ -15,4 +18,5 @@ public class EditCustomerResponse {
     private String username;
     private String address;
     private boolean verify;
+    private BigDecimal balance;
 }

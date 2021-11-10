@@ -73,9 +73,7 @@ public class EditCustomerValidator {
         try{
             unitOfWork = DefaultUnitOfWork.startAndGet(null);
             customerRepository.load(customerId);
-            System.out.println("Llego hasta aqui before");
             unitOfWork.commit();
-            System.out.println("Llego hasta aqui after");
         } catch (AggregateNotFoundException ex){
             unitOfWork.commit();
             throw ex;

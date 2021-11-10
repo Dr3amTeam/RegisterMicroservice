@@ -13,7 +13,7 @@ import java.util.Optional;
 
 
 @Component
-@ProcessingGroup("employeeDni")
+@ProcessingGroup("employee")
 public class EmployeeEventHandler {
     private final EmployeeDniRepository employeeDniRepository;
 
@@ -37,7 +37,7 @@ public class EmployeeEventHandler {
     }
     @EventHandler
     public void on(EmployeeEdited event) {
-        Optional<EmployeeDni> EmployeeDniOptional = employeeDniRepository.getDniByEmployeeId(event.getAccountId(), event.getDni());
+        Optional<EmployeeDni> EmployeeDniOptional = employeeDniRepository.getEmployeeDniByAccountId(event.getAccountId());
         EmployeeDniOptional.ifPresent(employeeDniRepository::delete);
         employeeDniRepository.save(new EmployeeDni(
                 event.getAccountId(),
@@ -50,7 +50,8 @@ public class EmployeeEventHandler {
                 event.getPassword(),
                 event.getUsername(),
                 event.getAddress(),
-                event.isVerify()
+                event.isVerify(),
+                event.getBalance()
 
         ));
     }

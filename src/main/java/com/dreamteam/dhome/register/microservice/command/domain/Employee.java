@@ -116,6 +116,7 @@ public class Employee {
                         command.getUsername(),
                         command.getAddress(),
                         command.isVerify(),
+                        command.getBalance(),
                         now
                 )
         );

@@ -73,6 +73,43 @@ public class Customer{
         }
     }
 
+    @CommandHandler
+    public void handle(EditCustomer command) {
+        Instant now = Instant.now();
+        apply(
+                new CustomerEdited(
+                        command.getAccountId(),
+                        command.getName(),
+                        command.getLastname(),
+                        command.getAge(),
+                        command.getPhone(),
+                        command.getDni(),
+                        command.getEmail(),
+                        command.getPassword(),
+                        command.getUsername(),
+                        command.getAddress(),
+                        command.isVerify(),
+                        command.getBalance(),
+                        now
+                )
+        );
+    }
+
+    @EventSourcingHandler
+    protected void on(CustomerEdited event) {
+        accountId = event.getAccountId();
+        name = event.getName();
+        lastname = event.getLastname();
+        age = event.getAge();
+        phone = event.getPhone();
+        dni = event.getDni();
+        email = event.getEmail();
+        password = event.getPassword();
+        username = event.getUsername();
+        verify = event.isVerify();
+        balance = event.getBalance();
+    }
+
     @EventSourcingHandler
     protected void on(CustomerRegistered event){
         this.accountId=event.getAccountId();
@@ -94,37 +131,5 @@ public class Customer{
         balance = balance.subtract(event.getAmount());
     }
 
-    @CommandHandler
-    public void handle(EditCustomer command) {
-        Instant now = Instant.now();
-        apply(
-                new EmployeeEdited(
-                        command.getAccountId(),
-                        command.getName(),
-                        command.getLastname(),
-                        command.getAge(),
-                        command.getPhone(),
-                        command.getDni(),
-                        command.getEmail(),
-                        command.getPassword(),
-                        command.getUsername(),
-                        command.getAddress(),
-                        command.isVerify(),
-                        now
-                )
-        );
-    }
 
-    @EventSourcingHandler
-    protected void on(CustomerEdited event) {
-        name = event.getName();
-        lastname = event.getLastname();
-        age = event.getAge();
-        phone = event.getPhone();
-        dni = event.getDni();
-        email = event.getEmail();
-        password = event.getPassword();
-        username = event.getUsername();
-        verify = event.isVerify();
-    }
 }

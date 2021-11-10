@@ -40,7 +40,7 @@ public class CustomerEventHandler {
     }
     @EventHandler
     public void on(CustomerEdited event) {
-        Optional<CustomerDni> CustomerDniOptional = customerDniRepository.getDniByCustomerId(event.getAccountId(), event.getDni());
+        Optional<CustomerDni> CustomerDniOptional = customerDniRepository.getCustomerDniByAccountId(event.getAccountId());
         CustomerDniOptional.ifPresent(customerDniRepository::delete);
         customerDniRepository.save(new CustomerDni(
                 event.getAccountId(),
@@ -53,8 +53,8 @@ public class CustomerEventHandler {
                 event.getPassword(),
                 event.getUsername(),
                 event.getAddress(),
-                event.isVerify()
-
+                event.isVerify(),
+                event.getBalance()
         ));
     }
 }

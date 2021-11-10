@@ -3,6 +3,8 @@ package com.dreamteam.dhome.register.microservice.command.application.dtos.reque
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 public class EditCustomerRequest {
     private @Setter @Getter String accountId;
     private @Getter String name;
@@ -15,4 +17,5 @@ public class EditCustomerRequest {
     private @Getter String username;
     private @Getter String address;
     private @Getter boolean verify;
+    private @Getter BigDecimal balance;
 }

@@ -88,7 +88,8 @@ public class EmployeeApplicationService {
                 editEmployeeRequest.getPassword().trim(),
                 editEmployeeRequest.getUsername().trim(),
                 editEmployeeRequest.getAddress().trim(),
-                editEmployeeRequest.isVerify()
+                editEmployeeRequest.isVerify(),
+                editEmployeeRequest.getBalance()
         );
         CompletableFuture<Object> future = commandGateway.send(editEmployee);
         CompletableFuture<ResultType> futureResult = future.handle((ok, ex) -> (ex != null) ? ResultType.FAILURE : ResultType.SUCCESS);
@@ -107,7 +108,8 @@ public class EmployeeApplicationService {
                 editEmployee.getPassword(),
                 editEmployee.getUsername(),
                 editEmployee.getAddress(),
-                editEmployee.isVerify()
+                editEmployee.isVerify(),
+                editEmployee.getBalance()
         );
         return Result.success(editEmployeeResponse);
 

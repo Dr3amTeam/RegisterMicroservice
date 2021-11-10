@@ -83,7 +83,8 @@ public class CustomerApplicationService {
                 editCustomerRequest.getPassword().trim(),
                 editCustomerRequest.getUsername().trim(),
                 editCustomerRequest.getAddress().trim(),
-                false
+                editCustomerRequest.isVerify(),
+                editCustomerRequest.getBalance()
         );
 
         CompletableFuture<Object> future = commandGateway.send(editCustomer);
@@ -103,7 +104,8 @@ public class CustomerApplicationService {
                 editCustomer.getPassword(),
                 editCustomer.getUsername(),
                 editCustomer.getAddress(),
-                editCustomer.isVerify()
+                editCustomer.isVerify(),
+                editCustomer.getBalance()
         );
 
 

@@ -9,9 +9,10 @@ import java.util.Optional;
 public interface EmployeeDniRepository extends JpaRepository<EmployeeDni,String> {
 //    Optional<EmployeeDni> findByDni(String dni);
 
+    Optional<EmployeeDni> getEmployeeDniByAccountId(String accountId);
 
-    @Query(value = "SELECT * FROM employee_dni WHERE account_id = :employeeId AND dni = :dni LIMIT 1", nativeQuery = true)
-    Optional<EmployeeDni> getDniByEmployeeId(String employeeId, String dni);
+    /*@Query(value = "SELECT * FROM employee_dni WHERE account_id = :employeeId AND dni = :dni LIMIT 1", nativeQuery = true)
+    Optional<EmployeeDni> getDniByEmployeeId(String employeeId, String dni);*/
 //    Optional<EmployeeDni> getByDniForDistinctEmployeeId(String dni, String employeeId);
 
 }
