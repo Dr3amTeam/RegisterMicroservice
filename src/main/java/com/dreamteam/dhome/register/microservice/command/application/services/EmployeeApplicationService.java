@@ -15,10 +15,12 @@ import com.dreamteam.dhome.register.microservice.command.application.dtos.respon
 import com.dreamteam.dhome.register.microservice.command.application.dtos.response.RegisterEmployeeResponse;
 import com.dreamteam.dhome.register.microservice.command.application.validators.EditEmployeeValidator;
 import com.dreamteam.dhome.register.microservice.command.application.validators.RegisterEmployeeValidator;
+import com.dreamteam.dhome.register.microservice.command.infra.EmployeeDni;
 import com.dreamteam.dhome.register.microservice.command.infra.EmployeeDniRepository;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 

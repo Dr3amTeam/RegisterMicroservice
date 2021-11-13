@@ -2,6 +2,7 @@ package com.dreamteam.dhome.register.microservice.query.projections;
 
 
 import com.dhome.registermicroservice.contracts.events.CustomerAccount;
+import com.dhome.registermicroservice.contracts.events.CustomerEdited;
 import com.dhome.registermicroservice.contracts.events.CustomerRegistered;
 import com.dhome.registermicroservice.contracts.events.FromCustomerAccount;
 import org.axonframework.config.ProcessingGroup;
@@ -41,16 +42,36 @@ public class CustomerViewProjection {
 
     @EventHandler
     public void on(CustomerAccount event){
-        Optional<CustomerView> optionalCustomerView = customerViewRepository.findById(event.getCustomerId());
+        Optional<CustomerView> optionalCustomerView = customerViewRepository.getCustomerViewByAccountId(event.getCustomerId());
         if (optionalCustomerView.isPresent()){
             CustomerView customerView = optionalCustomerView.get();
             customerView.setBalance(customerView.getBalance().subtract(event.getAmount()));
             customerViewRepository.save(customerView);
         }
     }
+
+    @EventHandler
+    public void on(CustomerEdited event){
+        Optional<CustomerView> optionalCustomerView = customerViewRepository.getCustomerViewByAccountId(event.getAccountId());
+        if (optionalCustomerView.isPresent()){
+            CustomerView customerView = optionalCustomerView.get();
+            customerView.setName(event.getName());
+            customerView.setLastname(event.getLastname());
+            customerView.setAge(event.getAge());
+            customerView.setPhone(event.getPhone());
+            customerView.setDni(event.getDni());
+            customerView.setEmail(event.getEmail());
+            customerView.setPassword(event.getPassword());
+            customerView.setUsername(event.getUsername());
+            customerView.setAddress(event.getAddress());
+            customerView.setVerify(event.isVerify());
+            customerView.setBalance(event.getBalance());
+            customerViewRepository.save(customerView);
+        }
+    }
     @EventHandler
     public void on(FromCustomerAccount event){
-        Optional<CustomerView> optionalCustomerView = customerViewRepository.findById(event.getCustomerId());
+        Optional<CustomerView> optionalCustomerView = customerViewRepository.getCustomerViewByAccountId(event.getCustomerId());
         if (optionalCustomerView.isPresent()){
             CustomerView customerView = optionalCustomerView.get();
             customerView.setBalance(customerView.getBalance().subtract(event.getAmount()));

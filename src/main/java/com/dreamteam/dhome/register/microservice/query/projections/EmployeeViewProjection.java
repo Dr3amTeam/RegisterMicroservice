@@ -39,6 +39,26 @@ public class EmployeeViewProjection {
     }
 
     @EventHandler
+    public void on(EmployeeEdited event, @Timestamp Instant timestamp){
+        Optional<EmployeeView> employeeViewOptional = employeeViewRepository.getEmployeeViewByAccountId(event.getAccountId());
+        if(employeeViewOptional.isPresent()){
+            EmployeeView employeeView = employeeViewOptional.get();
+            employeeView.setName(event.getName());
+            employeeView.setLastname(event.getLastname());
+            employeeView.setAge(event.getAge());
+            employeeView.setPhone(event.getPhone());
+            employeeView.setDni(event.getDni());
+            employeeView.setEmail(event.getEmail());
+            employeeView.setPassword(event.getPassword());
+            employeeView.setUsername(event.getUsername());
+            employeeView.setAddress(event.getAddress());
+            employeeView.setVerify(event.isVerify());
+            employeeView.setBalance(event.getBalance());
+            employeeViewRepository.save(employeeView);
+        }
+    }
+
+    @EventHandler
     public void on(EmployeeAccount event){
         Optional<EmployeeView> optionalEmployeeView = employeeViewRepository.findById(event.getEmployeeId());
         if (optionalEmployeeView.isPresent()){

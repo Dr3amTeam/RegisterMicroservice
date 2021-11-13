@@ -51,7 +51,6 @@ public class EmployeeComandController {
     public ResponseEntity<Object> edit(@PathVariable("employeeId") String employeeId, @RequestBody EditEmployeeRequest editEmployeeRequest) {
         try {
             editEmployeeRequest.setAccountId(employeeId);
-
             Result<EditEmployeeResponse, Notification> result = employeeApplicationService.edit(editEmployeeRequest);
             System.out.println("id employee " + employeeId);
             if(result.isSuccess())

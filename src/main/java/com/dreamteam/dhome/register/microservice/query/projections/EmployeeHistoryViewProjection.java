@@ -2,6 +2,7 @@ package com.dreamteam.dhome.register.microservice.query.projections;
 
 
 import com.dhome.registermicroservice.contracts.events.EmployeeAccount;
+import com.dhome.registermicroservice.contracts.events.EmployeeEdited;
 import com.dhome.registermicroservice.contracts.events.EmployeeRegistered;
 import com.dhome.registermicroservice.contracts.events.ToEmployeeAccount;
 import org.axonframework.config.ProcessingGroup;
@@ -37,6 +38,27 @@ public class EmployeeHistoryViewProjection {
                 event.getBalance(), event.getOccurredOn(),
                                                                         timestamp, event.getOffice().getName(), event.getOffice().getSpeciality());
         employeeViewRepository.save(employeeHistoryView);
+    }
+
+    @EventHandler
+    public void on(EmployeeEdited event, @Timestamp Instant timestamp){
+        Optional<EmployeeHistoryView> employeeHistoryViewOptional = employeeViewRepository.getEmployeeHistoryViewByAccountId(event.getAccountId());
+        if (employeeHistoryViewOptional.isPresent()){
+            EmployeeHistoryView employeeHistoryView = employeeHistoryViewOptional.get();
+            employeeHistoryView = new EmployeeHistoryView(employeeHistoryView);
+            employeeHistoryView.setName(event.getName());
+            employeeHistoryView.setLastname(event.getLastname());
+            employeeHistoryView.setAge(event.getAge());
+            employeeHistoryView.setPhone(event.getPhone());
+            employeeHistoryView.setDni(event.getDni());
+            employeeHistoryView.setEmail(event.getEmail());
+            employeeHistoryView.setPassword(event.getPassword());
+            employeeHistoryView.setUsername(event.getUsername());
+            employeeHistoryView.setAddress(event.getAddress());
+            employeeHistoryView.setVerify(event.isVerify());
+            employeeHistoryView.setBalance(event.getBalance());
+            employeeViewRepository.save(employeeHistoryView);
+        }
     }
 
     @EventHandler

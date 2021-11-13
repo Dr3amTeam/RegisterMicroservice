@@ -2,6 +2,7 @@ package com.dreamteam.dhome.register.microservice.query.projections;
 
 
 import com.dhome.registermicroservice.contracts.events.CustomerAccount;
+import com.dhome.registermicroservice.contracts.events.CustomerEdited;
 import com.dhome.registermicroservice.contracts.events.CustomerRegistered;
 import com.dhome.registermicroservice.contracts.events.FromCustomerAccount;
 import org.axonframework.config.ProcessingGroup;
@@ -45,6 +46,26 @@ public class CustomerHistoryViewProjection {
         if (optionalCustomerHistoryView.isPresent()){
             CustomerHistoryView customerHistoryView = optionalCustomerHistoryView.get();
             customerHistoryView.setBalance(customerHistoryView.getBalance().subtract(event.getAmount()));
+            accountHistoryViewRepository.save(customerHistoryView);
+        }
+    }
+
+    @EventHandler
+    public void on(CustomerEdited event){
+        Optional<CustomerHistoryView> customerHistoryViewOptional = accountHistoryViewRepository.getCustomerHistoryViewByAccountId(event.getAccountId());
+        if (customerHistoryViewOptional.isPresent()){
+            CustomerHistoryView customerHistoryView = customerHistoryViewOptional.get();
+            customerHistoryView.setName(event.getName());
+            customerHistoryView.setLastname(event.getLastname());
+            customerHistoryView.setAge(event.getAge());
+            customerHistoryView.setPhone(event.getPhone());
+            customerHistoryView.setDni(event.getDni());
+            customerHistoryView.setEmail(event.getEmail());
+            customerHistoryView.setPassword(event.getPassword());
+            customerHistoryView.setUsername(event.getUsername());
+            customerHistoryView.setAddress(event.getAddress());
+            customerHistoryView.setVerify(event.isVerify());
+            customerHistoryView.setBalance(event.getBalance());
             accountHistoryViewRepository.save(customerHistoryView);
         }
     }

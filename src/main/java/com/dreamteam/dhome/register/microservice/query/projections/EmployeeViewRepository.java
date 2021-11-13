@@ -7,5 +7,5 @@ import java.util.Optional;
 
 @Repository
 public interface EmployeeViewRepository extends JpaRepository<EmployeeView,String> {
-    Optional<EmployeeView> getByUsername(String username);
+    Optional<EmployeeView> getEmployeeViewByAccountId(String accountId);
 }

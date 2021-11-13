@@ -17,6 +17,5 @@ public class EditEmployeeRequest {
     private @Getter String username;
     private @Getter String address;
     private @Getter boolean verify;
-    private @Getter
-    BigDecimal balance;
+    private @Getter BigDecimal balance;
 }
