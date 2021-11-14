@@ -14,5 +14,5 @@ public class RegisterEmployeeResponse {
     private String username;
 
     private Office office;
-    
+
 }

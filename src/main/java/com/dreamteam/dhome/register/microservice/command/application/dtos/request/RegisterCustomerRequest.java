@@ -35,6 +35,7 @@ public class RegisterCustomerRequest {
     @Schema(example = "Calle Los Pelicanos 420", description = "Dirección del cliente")
     private String address;
 
+    @Schema(example = "false", description = "Estado de verificación de la cuenta")
     private boolean verify;
 
     @Schema(example = "100", description = "Monto disponible en la billetera del cliente")

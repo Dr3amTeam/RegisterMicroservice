@@ -36,6 +36,7 @@ public class RegisterEmployeeRequest {
     @Schema(example = "Calle Los Manzanos 170", description = "Dirección del empleado")
     private String address;
 
+    @Schema(example = "false", description = "Estado de verificación de la cuenta")
     private boolean verify;
 
     @Schema(example = "200", description = "Monto disponible en la billetera del empleado")
