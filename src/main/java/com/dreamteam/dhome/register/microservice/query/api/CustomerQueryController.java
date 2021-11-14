@@ -25,7 +25,7 @@ public class CustomerQueryController {
     }
 
     @GetMapping("")
-    @ApiOperation(value = "Get all customer", response = List.class)
+    @ApiOperation(value = "Obtener todos los clientes", response = List.class)
     public ResponseEntity<List<CustomerView>> getAll() {
         try {
             return new ResponseEntity<List<CustomerView>>(customerViewRepository.findAll(), HttpStatus.OK);
@@ -35,7 +35,7 @@ public class CustomerQueryController {
     }
 
     @GetMapping("/history/{id}")
-    @ApiOperation(value = "Get customer history", response = List.class)
+    @ApiOperation(value = "Obtener historial del cliente", response = List.class)
     public ResponseEntity<List<CustomerHistoryView>> getHistoryById(@PathVariable("id") String id) {
         try {
             List<CustomerHistoryView> customers = customerHistoryViewRepository.getHistoryByAccountId(id);
