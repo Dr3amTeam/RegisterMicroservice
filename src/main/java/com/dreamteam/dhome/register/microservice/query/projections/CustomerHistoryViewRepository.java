@@ -12,4 +12,5 @@ public interface CustomerHistoryViewRepository extends JpaRepository<CustomerHis
     @Query(value = "SELECT * FROM customer_history_view WHERE account_id= :accountId ORDER BY created_at",nativeQuery = true)
     List<CustomerHistoryView> getHistoryByAccountId(String accountId);
     Optional<CustomerHistoryView> getCustomerHistoryViewByAccountId(String accountId);
+
 }

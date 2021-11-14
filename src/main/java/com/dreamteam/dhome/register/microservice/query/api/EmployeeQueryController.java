@@ -34,6 +34,17 @@ public class EmployeeQueryController {
         }
     }
 
+    @GetMapping("username/{username}")
+    @ApiOperation(value = "Get all employee", response = List.class)
+    public ResponseEntity<List<EmployeeView>> getAllByUsername(@PathVariable("username")String username) {
+        try {
+            List<EmployeeView> employeeViews = employeeViewRepository.getEmployeeViewsByUsername(username);
+            return new ResponseEntity<List<EmployeeView>>(employeeViews, HttpStatus.OK);
+        } catch( Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/history/{id}")
     @ApiOperation(value = "Get employee history", response = List.class)
     public ResponseEntity<List<EmployeeHistoryView>> getHistoryById(@PathVariable("id") String id) {
