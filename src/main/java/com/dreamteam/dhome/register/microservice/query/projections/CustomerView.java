@@ -16,7 +16,7 @@ public class CustomerView {
     @Id @Column(length = 36) @Getter @Setter
     private String accountId;
 
-    @Schema(defaultValue = "Alonso")
+    @Schema(example = "Alonso")
     @Column(length = 50) @Getter @Setter
     private String name;
 
