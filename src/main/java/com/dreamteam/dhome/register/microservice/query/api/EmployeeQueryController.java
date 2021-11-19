@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")
@@ -22,7 +23,7 @@ public class EmployeeQueryController {
     }
 
     @GetMapping("")
-    @ApiOperation(value = "Obtener todos los empleados", response = List.class)
+    @ApiOperation(value = "Get all employee", response = List.class)
     public ResponseEntity<List<EmployeeView>> getAll() {
         try {
             return new ResponseEntity<List<EmployeeView>>(employeeViewRepository.findAll(), HttpStatus.OK);
@@ -32,7 +33,7 @@ public class EmployeeQueryController {
     }
 
     @GetMapping("username/{username}")
-    @ApiOperation(value = "Get all employee", response = List.class)
+    @ApiOperation(value = "Get all employee by username", response = List.class)
     public ResponseEntity<List<EmployeeView>> getAllByUsername(@PathVariable("username")String username) {
         try {
             List<EmployeeView> employeeViews = employeeViewRepository.getEmployeeViewsByUsername(username);
@@ -42,8 +43,20 @@ public class EmployeeQueryController {
         }
     }
 
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get by id", response = List.class)
+    public ResponseEntity<EmployeeView> getAll(@PathVariable("id") String id) {
+        try {
+            Optional<EmployeeView> employeeView =employeeViewRepository.findById(id);
+            EmployeeView response = employeeView.get();
+            return new ResponseEntity<EmployeeView>(response,HttpStatus.OK);
+        } catch( Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/history/{id}")
-    @ApiOperation(value = "Obtener historial del empleado", response = List.class)
+    @ApiOperation(value = "Get history of employee", response = List.class)
     public ResponseEntity<List<EmployeeHistoryView>> getHistoryById(@PathVariable("id") String id) {
         try {
             List<EmployeeHistoryView> employees = employeeHistoryViewRepository.getHistoryByAccountId(id);

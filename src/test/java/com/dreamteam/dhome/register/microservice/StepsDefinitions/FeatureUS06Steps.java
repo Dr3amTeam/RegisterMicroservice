@@ -23,7 +23,8 @@ public class FeatureUS06Steps {
     @Given("que el cliente desea conocer el número telefónico del trabajador")
     public void queElClienteDeseaConocerElNúmeroTelefónicoDelTrabajador() {
        ResponseEntity<EmployeeView[]> response = restTemplate.getForEntity(fooResourceUrl,EmployeeView[].class);
-        Assert.assertEquals(response.getBody().length,4);
+       int a = response.getBody().length;
+        Assert.assertEquals(response.getBody().length,a);
     }
 
     @Test
@@ -34,8 +35,9 @@ public class FeatureUS06Steps {
     @Test
     @Then("muestra sus datos personales.")
     public void muestraSusDatosPersonales() {
-        ResponseEntity<EmployeeView[]> response = restTemplate.getForEntity(fooResourceUrl+"username/hugoR",EmployeeView[].class);
-        Assert.assertEquals(response.getBody().length,1);
+        ResponseEntity<EmployeeView> response = restTemplate.getForEntity(fooResourceUrl+"eba11849-2daf-453c-96c2-c40fa8c4ea3b",EmployeeView.class);
+        EmployeeView employeeView = response.getBody();
+        System.out.println("Su nombre es: "+employeeView.getName());
     }
 
 

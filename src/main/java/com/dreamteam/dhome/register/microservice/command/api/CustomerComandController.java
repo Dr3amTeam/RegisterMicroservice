@@ -43,7 +43,7 @@ public class CustomerComandController {
             return ApiController.serverError();
         }
     }
-    @PutMapping("/{customerId}")
+    @PutMapping(path="/{customerId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> edit(@PathVariable("customerId") String customerId, @RequestBody EditCustomerRequest editCustomerRequest) {
         try {
             editCustomerRequest.setAccountId(customerId);

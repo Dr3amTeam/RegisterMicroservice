@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/customers")
@@ -23,7 +25,7 @@ public class CustomerQueryController {
     }
 
     @GetMapping("")
-    @ApiOperation(value = "Obtener todos los clientes", response = List.class)
+    @ApiOperation(value = "Get All", response = List.class)
     public ResponseEntity<List<CustomerView>> getAll() {
         try {
             return new ResponseEntity<List<CustomerView>>(customerViewRepository.findAll(), HttpStatus.OK);
@@ -32,8 +34,20 @@ public class CustomerQueryController {
         }
     }
 
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get by id", response = List.class)
+    public ResponseEntity<CustomerView> getAll(@PathVariable("id") String id) {
+        try {
+            Optional<CustomerView> customerView =customerViewRepository.findById(id);
+            CustomerView response = customerView.get();
+            return new ResponseEntity<CustomerView>(response,HttpStatus.OK);
+        } catch( Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/history/{id}")
-    @ApiOperation(value = "Obtener historial del cliente", response = List.class)
+    @ApiOperation(value = "Get history by id", response = List.class)
     public ResponseEntity<List<CustomerHistoryView>> getHistoryById(@PathVariable("id") String id) {
         try {
             List<CustomerHistoryView> customers = customerHistoryViewRepository.getHistoryByAccountId(id);
