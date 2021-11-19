@@ -10,8 +10,10 @@ import com.dreamteam.dhome.register.microservice.command.application.dtos.respon
 import com.dreamteam.dhome.register.microservice.command.application.dtos.response.RegisterCustomerResponse;
 import com.dreamteam.dhome.register.microservice.command.application.services.CustomerApplicationService;
 import com.dreamteam.dhome.register.microservice.command.infra.CustomerDniRepository;
+import com.dreamteam.dhome.register.microservice.config.SwaggerConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.SwaggerDefinition;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.springframework.http.MediaType;
@@ -22,7 +24,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/customers")
-@Api(tags = "Customer")
+@Api(tags = {SwaggerConfig.CUSTOMERS})
 public class CustomerComandController {
     private final CustomerApplicationService customerApplicationService;
     private final CommandGateway commandGateway;

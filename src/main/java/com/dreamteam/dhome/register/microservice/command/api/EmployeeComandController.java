@@ -15,6 +15,7 @@ import com.dreamteam.dhome.register.microservice.command.application.dtos.respon
 import com.dreamteam.dhome.register.microservice.command.application.services.EmployeeApplicationService;
 import com.dreamteam.dhome.register.microservice.command.infra.CustomerDniRepository;
 import com.dreamteam.dhome.register.microservice.command.infra.EmployeeDniRepository;
+import com.dreamteam.dhome.register.microservice.config.SwaggerConfig;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employees")
-@Api(tags = "Employee")
+@Api(tags = {SwaggerConfig.EMPLOYEES})
 public class EmployeeComandController {
     private final EmployeeApplicationService employeeApplicationService;
     private final CommandGateway commandGateway;

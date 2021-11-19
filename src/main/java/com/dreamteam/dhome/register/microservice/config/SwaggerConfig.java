@@ -16,10 +16,14 @@ import java.util.Collections;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+
+    public static final String CUSTOMERS = "Customers";
+    public static final String EMPLOYEES = "Employees";
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .tags(new Tag("Accounts","Accounts"))
+                .tags(new Tag(CUSTOMERS,"Muestra las funcionalidades para el cliente"),
+                        new Tag(EMPLOYEES,"Muestra las funcionalidades para el empleado"))
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())

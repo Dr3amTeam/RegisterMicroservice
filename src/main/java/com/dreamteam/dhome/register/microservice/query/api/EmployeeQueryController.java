@@ -1,5 +1,6 @@
 package com.dreamteam.dhome.register.microservice.query.api;
 
+import com.dreamteam.dhome.register.microservice.config.SwaggerConfig;
 import com.dreamteam.dhome.register.microservice.query.projections.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")
-@Api(tags = "Employee")
+@Api(tags = {SwaggerConfig.EMPLOYEES})
 public class EmployeeQueryController {
     private final EmployeeViewRepository employeeViewRepository;
     private final EmployeeHistoryViewRepository employeeHistoryViewRepository;

@@ -1,5 +1,6 @@
 package com.dreamteam.dhome.register.microservice.query.api;
 
+import com.dreamteam.dhome.register.microservice.config.SwaggerConfig;
 import com.dreamteam.dhome.register.microservice.query.projections.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/customers")
-@Api(tags = "Customer")
+@Api(tags = {SwaggerConfig.CUSTOMERS})
 public class CustomerQueryController {
     private final CustomerViewRepository customerViewRepository;
     private final CustomerHistoryViewRepository customerHistoryViewRepository;
