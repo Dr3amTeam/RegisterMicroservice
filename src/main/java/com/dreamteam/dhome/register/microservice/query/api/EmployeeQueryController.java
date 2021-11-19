@@ -24,7 +24,7 @@ public class EmployeeQueryController {
     }
 
     @GetMapping("")
-    @ApiOperation(value = "Get all employee", response = List.class)
+    @ApiOperation(value = "Obtener todos los empleados", response = List.class)
     public ResponseEntity<List<EmployeeView>> getAll() {
         try {
             return new ResponseEntity<List<EmployeeView>>(employeeViewRepository.findAll(), HttpStatus.OK);
@@ -33,8 +33,8 @@ public class EmployeeQueryController {
         }
     }
 
-    @GetMapping("username/{username}")
-    @ApiOperation(value = "Get all employee by username", response = List.class)
+    @GetMapping("/username/{username}")
+    @ApiOperation(value = "Obtener todos los empleados por nombre de usuario", response = List.class)
     public ResponseEntity<List<EmployeeView>> getAllByUsername(@PathVariable("username")String username) {
         try {
             List<EmployeeView> employeeViews = employeeViewRepository.getEmployeeViewsByUsername(username);
@@ -45,7 +45,7 @@ public class EmployeeQueryController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "Get by id", response = List.class)
+    @ApiOperation(value = "Obtener empleado por Id", response = List.class)
     public ResponseEntity<EmployeeView> getAll(@PathVariable("id") String id) {
         try {
             Optional<EmployeeView> employeeView =employeeViewRepository.findById(id);
@@ -57,7 +57,7 @@ public class EmployeeQueryController {
     }
 
     @GetMapping("/history/{id}")
-    @ApiOperation(value = "Get history of employee", response = List.class)
+    @ApiOperation(value = "Obtener historial por Id de empleado", response = List.class)
     public ResponseEntity<List<EmployeeHistoryView>> getHistoryById(@PathVariable("id") String id) {
         try {
             List<EmployeeHistoryView> employees = employeeHistoryViewRepository.getHistoryByAccountId(id);
