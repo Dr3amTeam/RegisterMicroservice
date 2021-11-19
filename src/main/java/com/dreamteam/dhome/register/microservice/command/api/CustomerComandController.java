@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/customers")
 @Api(tags = "Customer")
+@CrossOrigin(origins = "https://gateway-service.mybluemix.net")
 public class CustomerComandController {
     private final CustomerApplicationService customerApplicationService;
     private final CommandGateway commandGateway;
