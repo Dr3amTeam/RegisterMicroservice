@@ -20,9 +20,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.dhome</groupId>
-            <artifactId>register-microservice</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <groupId>io.github.dr3amteam.dhome</groupId>
+            <artifactId>register-microservice-contracts</artifactId>
+            <version>0.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
