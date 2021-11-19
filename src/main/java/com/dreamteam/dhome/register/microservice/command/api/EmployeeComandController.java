@@ -16,6 +16,7 @@ import com.dreamteam.dhome.register.microservice.command.application.services.Em
 import com.dreamteam.dhome.register.microservice.command.infra.CustomerDniRepository;
 import com.dreamteam.dhome.register.microservice.command.infra.EmployeeDniRepository;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.springframework.http.MediaType;
@@ -36,6 +37,7 @@ public class EmployeeComandController {
         this.employeeDniRepository = employeeDniRepository;
     }
     @PostMapping(path= "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Registrar empleado")
     public ResponseEntity<Object> register(@RequestBody RegisterEmployeeRequest registerEmployeeRequest) {
         try {
             Result<RegisterEmployeeResponse, Notification> result = employeeApplicationService.register(registerEmployeeRequest);
@@ -48,6 +50,7 @@ public class EmployeeComandController {
         }
     }
     @PutMapping("/{employeeId}")
+    @ApiOperation(value = "Actualizar datos de empleado")
     public ResponseEntity<Object> edit(@PathVariable("employeeId") String employeeId, @RequestBody EditEmployeeRequest editEmployeeRequest) {
         try {
             editEmployeeRequest.setAccountId(employeeId);

@@ -11,11 +11,14 @@ import com.dreamteam.dhome.register.microservice.command.application.dtos.respon
 import com.dreamteam.dhome.register.microservice.command.application.services.CustomerApplicationService;
 import com.dreamteam.dhome.register.microservice.command.infra.CustomerDniRepository;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/customers")
@@ -31,6 +34,7 @@ public class CustomerComandController {
         this.customerDniRepository = customerDniRepository;
     }
     @PostMapping(path= "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Registrar cliente")
     public ResponseEntity<Object> register(@RequestBody RegisterCustomerRequest registerCustomerRequest) {
         try {
             Result<RegisterCustomerResponse, Notification> result = customerApplicationService.register(registerCustomerRequest);
@@ -43,6 +47,7 @@ public class CustomerComandController {
         }
     }
     @PutMapping(path="/{customerId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Actualizar datos de cliente")
     public ResponseEntity<Object> edit(@PathVariable("customerId") String customerId, @RequestBody EditCustomerRequest editCustomerRequest) {
         try {
             editCustomerRequest.setAccountId(customerId);
