@@ -4,6 +4,7 @@ import com.dreamteam.dhome.register.microservice.query.projections.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customers")
 @Api(tags = "Customer")
-@CrossOrigin(origins = "https://gateway-service.mybluemix.net")
 public class CustomerQueryController {
     private final CustomerViewRepository customerViewRepository;
     private final CustomerHistoryViewRepository customerHistoryViewRepository;

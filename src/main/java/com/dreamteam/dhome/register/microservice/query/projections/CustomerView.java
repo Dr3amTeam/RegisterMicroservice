@@ -13,52 +13,59 @@ import java.time.Instant;
 @Entity
 public class CustomerView {
 
+    @Schema(example = "e123d4", description = "Número de cuenta")
     @Id @Column(length = 36) @Getter @Setter
     private String accountId;
 
-    @Schema(example = "Alonso")
+    @Schema(example = "Alonso", description = "Nombre")
     @Column(length = 50) @Getter @Setter
     private String name;
 
-    @Schema(defaultValue = "Yuen")
+    @Schema(example = "Yuen",description = "Apellido")
     @Column(length = 50) @Getter @Setter
     private String lastname;
 
-    @Schema(defaultValue = "21")
+    @Schema(example = "21",description = "Edad")
     @Column(length = 50) @Getter @Setter
     private String age;
 
-    @Schema(defaultValue = "999000123")
+    @Schema(example = "999000123", description = "Teléfono")
     @Column(length = 50) @Getter @Setter
     private String phone;
 
-    @Schema(defaultValue = "09812390")
+    @Schema(example = "09812390", description = "DNI")
     @Column(length = 50) @Getter @Setter
     private String dni;
 
-    @Schema(defaultValue = "alonso@dhome.com")
+    @Schema(example = "alonso@dhome.com",description = "Correo electrónico")
     @Column(length = 50) @Getter @Setter
     private String email;
 
-    @Schema(defaultValue = "aea2021")
+    @Schema(example = "alonso2021", description = "Password")
     @Column(length = 10) @Getter @Setter
     private String password;
 
-    @Schema(defaultValue = "alonso.yuen")
+    @Schema(example = "alonso.yuen",description = "Nombre de usuario")
     @Column(length = 50) @Getter @Setter
     private String username;
 
-    @Schema(defaultValue = "Calle Los Bastardos 420")
+    @Schema(example = "Calle Los Bastardos 420",description = "Dirección")
     @Column(length = 50) @Getter @Setter
     private String address;
 
     @Getter @Setter
+    @Schema(example = "true",description = "Verifica la cuenta si es válida")
     private boolean verify;
 
+    @Schema(example = "5000",description = "Balance")
     @Getter @Setter
     private BigDecimal balance;
 
+    @Schema(example = "19/11/2021",description = "Fecha de creación")
+    @Column(nullable = true) @Getter @Setter
     private Instant createdAt;
+
+    @Schema(example = "21/11/2021",description = "Fecha de actualización")
     @Column(nullable = true) @Getter @Setter
     private Instant updatedAt;
 
