@@ -19,11 +19,7 @@
         <spring-cloud.version>2020.0.4</spring-cloud.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>io.github.dr3amteam.dhome</groupId>
-            <artifactId>register-microservice-contracts</artifactId>
-            <version>0.0.3</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -36,6 +32,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
             <version>3.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.dr3amteam.dhome</groupId>
+            <artifactId>register-microservice-contracts</artifactId>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

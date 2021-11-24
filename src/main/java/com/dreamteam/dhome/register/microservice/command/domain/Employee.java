@@ -81,7 +81,7 @@ public class Employee {
         try{
             apply(new PostValidated(validatePost.getPostId(),validatePost.getVideoUrl(),validatePost.getContent(),validatePost.getUploadDate(),validatePost.getEmployeeId()));
         }catch (AggregateNotFoundException ex){
-            apply(new PostFailed(validatePost.getPostId(),validatePost.getVideoUrl(),validatePost.getContent(),validatePost.getUploadDate(),validatePost.getEmployeeId()));
+            apply(new PostValidatedFailed(validatePost.getPostId(),validatePost.getVideoUrl(),validatePost.getContent(),validatePost.getUploadDate(),validatePost.getEmployeeId()));
             throw ex;
         }catch (Exception ex){
             throw ex;
