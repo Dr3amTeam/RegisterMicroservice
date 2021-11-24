@@ -1,10 +1,7 @@
 package com.dreamteam.dhome.register.microservice.query.projections;
 
 
-import com.dhome.registermicroservice.contracts.events.EmployeeAccount;
-import com.dhome.registermicroservice.contracts.events.EmployeeEdited;
-import com.dhome.registermicroservice.contracts.events.EmployeeRegistered;
-import com.dhome.registermicroservice.contracts.events.ToEmployeeAccount;
+import com.dhome.registermicroservice.contracts.events.*;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.Timestamp;
@@ -76,6 +73,15 @@ public class EmployeeHistoryViewProjection {
         if (optionalEmployeeHistoryView.isPresent()){
             EmployeeHistoryView employeeView = optionalEmployeeHistoryView.get();
             employeeView.setBalance(employeeView.getBalance().add(event.getAmount()));
+            employeeViewRepository.save(employeeView);
+        }
+    }
+
+    @EventHandler
+    public void on(PostValidated event){
+        Optional<EmployeeHistoryView> optionalEmployeeHistoryView = employeeViewRepository.getEmployeeHistoryViewByAccountId(event.getEmployeeId());
+        if (optionalEmployeeHistoryView.isPresent()){
+            EmployeeHistoryView employeeView = optionalEmployeeHistoryView.get();
             employeeViewRepository.save(employeeView);
         }
     }

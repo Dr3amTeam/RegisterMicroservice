@@ -76,4 +76,13 @@ public class EmployeeViewProjection {
             employeeViewRepository.save(employeeView);
         }
     }
+
+    @EventHandler
+    public void on(PostValidated event){
+        Optional<EmployeeView> optionalEmployeeView = employeeViewRepository.findById(event.getEmployeeId());
+        if (optionalEmployeeView.isPresent()){
+            EmployeeView employeeView = optionalEmployeeView.get();
+            employeeViewRepository.save(employeeView);
+        }
+    }
 }

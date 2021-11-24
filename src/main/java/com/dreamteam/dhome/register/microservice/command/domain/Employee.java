@@ -3,10 +3,8 @@ package com.dreamteam.dhome.register.microservice.command.domain;
 import com.dhome.registermicroservice.contracts.commands.AccountToEmployee;
 import com.dhome.registermicroservice.contracts.commands.EditEmployee;
 import com.dhome.registermicroservice.contracts.commands.RegisterEmployee;
-import com.dhome.registermicroservice.contracts.events.EmployeeEdited;
-import com.dhome.registermicroservice.contracts.events.EmployeeRegistered;
-import com.dhome.registermicroservice.contracts.events.ToAccountNotFound;
-import com.dhome.registermicroservice.contracts.events.ToEmployeeAccount;
+import com.dhome.registermicroservice.contracts.commands.ValidatePost;
+import com.dhome.registermicroservice.contracts.events.*;
 import com.dhome.registermicroservice.contracts.others.Office;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -76,6 +74,23 @@ public class Employee {
         }catch (Exception ex){
             throw ex;
         }
+    }
+
+    @CommandHandler
+    public void ValidatePost(ValidatePost validatePost) throws Exception{
+        try{
+            apply(new PostValidated(validatePost.getPostId(),validatePost.getVideoUrl(),validatePost.getContent(),validatePost.getUploadDate(),validatePost.getEmployeeId()));
+        }catch (AggregateNotFoundException ex){
+            apply(new PostFailed(validatePost.getPostId(),validatePost.getVideoUrl(),validatePost.getContent(),validatePost.getUploadDate(),validatePost.getEmployeeId()));
+            throw ex;
+        }catch (Exception ex){
+            throw ex;
+        }
+    }
+
+    @EventSourcingHandler
+    public void on(PostValidated event){
+        accountId = event.getEmployeeId();
     }
 
     @EventSourcingHandler
